@@ -1,5 +1,7 @@
 package org.devgupta.hadoop;
 
+import java.util.Date;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -31,12 +33,15 @@ public class WordCountJob extends Configured implements Tool {
 	}
 	
 	public static void main(String[] args){
-		String[] someArgs = {"input.txt","output.txt"};
+		long startTime = new Date().getTime();
+		String[] someArgs = {"pg16452.txt","output"};
 		try{
 			ToolRunner.run(new Configuration(), new WordCountJob(),someArgs);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		long endTime = new Date().getTime();
+		System.out.println("Elapsed Time:"+ (endTime - startTime));
 	}
 
 }
